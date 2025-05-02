@@ -56,18 +56,18 @@ public class NotificacionService implements INotificacionService {
 
 	@Override
     public void sendSoldProductNotificationToSeller(String sellerEmail, String sellerName, String productName) throws MessagingException {
-        String subject = "Notificación venta de producto";
+        String subject = "Compra exitosa";
         String body = "Buenas " + sellerName + ",\n\n" +
-                "¡Buenas noticias! Tu producto \"" + productName + "\" ha tenido ventas.\n\n";
+                "Tu compra del \"" + productName + "\" fue exitosa.\n\n" +
+                "¡Gracias! ¡Vuelvas prontos!";
         sendEmail(sellerEmail, subject, body);
     }
 
 	@Override
     public void sendPurchaseSuccessToBuyer(String buyerEmail, String buyerName, String productName) throws MessagingException {
-        String subject = "Compra exitosa";
+        String subject = "Notificación venta de producto";
         String body = "Buenas " + buyerName + ",\n\n" +
-                "Tu compra del \"" + productName + "\" fue exitosa.\n\n" +
-                "¡Gracias! ¡Vuelvas prontos!";
+                "¡Buenas noticias! Tu producto \"" + productName + "\" ha tenido ventas.\n\n";
         sendEmail(buyerEmail, subject, body);
     }
 }
