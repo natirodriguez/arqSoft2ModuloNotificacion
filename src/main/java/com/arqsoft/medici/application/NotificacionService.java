@@ -60,7 +60,9 @@ public class NotificacionService implements INotificacionService {
         String body = "Buenas " + sellerName + ",\n\n" +
                 "Tu compra del \"" + productName + "\" fue exitosa.\n\n" +
                 "¡Gracias! ¡Vuelvas prontos!";
-        sendEmail(sellerEmail, subject, body);
+        String template = createEmail(body);
+
+        sendEmail(sellerEmail, subject, template);
     }
 
 	@Override
@@ -68,6 +70,32 @@ public class NotificacionService implements INotificacionService {
         String subject = "Notificación venta de producto";
         String body = "Buenas " + buyerName + ",\n\n" +
                 "¡Buenas noticias! Tu producto \"" + productName + "\" ha tenido ventas.\n\n";
-        sendEmail(buyerEmail, subject, body);
+        String template = createEmail(body);
+        
+        sendEmail(buyerEmail, subject, template);
+    }
+	
+	private String createEmail(String bodyContent) {
+        String template = "<!DOCTYPE html>" +
+            "<html lang=\"es\">" +
+            "<head>" +
+            "  <meta charset=\"UTF-8\" />" +
+            "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />" +
+            "  <title>Notificación de Ventas</title>" +
+            "  <style>" +
+            "    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }" +
+            "    header { background-color: #005BBB; color: white; padding: 10px; font-size: 24px; font-weight: bold; text-align: center; }" +
+            "    main { background-color: white; padding: 20px; margin: 15px 0; border-radius: 6px; color: #333; font-size: 16px; }" +
+            "    footer { background-color: #e2e2e2; padding: 15px; text-align: center; font-size: 14px; color: #555; border-radius: 6px; }" +
+            "  </style>" +
+            "</head>" +
+            "<body>" +
+            "  <header>Notificación de Ventas</header>" +
+            "  <main>" + bodyContent + "</main>" +
+            "  <footer>Libre Mercado</footer>" +
+            "</body>" +
+            "</html>";
+
+        return template;
     }
 }
