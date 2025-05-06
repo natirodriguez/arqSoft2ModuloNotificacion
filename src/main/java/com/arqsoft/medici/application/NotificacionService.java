@@ -42,7 +42,8 @@ public class NotificacionService implements INotificacionService {
         });
     }
 
-    private void sendEmail(String toEmail, String subject, String body) throws MessagingException {
+	@Override
+    public void sendEmail(String toEmail, String subject, String body) throws MessagingException {
     	Session session = createSession();
         Message message = new MimeMessage(session);
 

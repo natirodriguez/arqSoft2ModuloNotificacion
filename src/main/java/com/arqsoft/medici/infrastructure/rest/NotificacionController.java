@@ -1,6 +1,5 @@
 package com.arqsoft.medici.infrastructure.rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.arqsoft.medici.application.NotificacionService;
 import com.arqsoft.medici.domain.dto.NotificacionDTO;
@@ -15,8 +14,6 @@ public class NotificacionController implements INotificacionController {
 	
 	@Override
 	public void sendNotificacionUsuario(NotificacionDTO request) {
-        //NotificacionService service = new NotificacionService();
-
         try {
         	notificacionService.sendSoldProductNotificationToSeller(request.getEmail(), request.getNombreUsuario(), request.getNombreProducto());
 
@@ -29,8 +26,6 @@ public class NotificacionController implements INotificacionController {
 	
 	@Override
 	public void sendNotificacionVendedor(NotificacionDTO request) {
-        //NotificacionService service = new NotificacionService();
-
         try {
 
         	notificacionService.sendPurchaseSuccessToBuyer(request.getEmail(), request.getNombreUsuario(), request.getNombreProducto());
