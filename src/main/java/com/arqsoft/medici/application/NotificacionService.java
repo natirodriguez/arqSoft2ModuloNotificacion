@@ -50,7 +50,7 @@ public class NotificacionService implements INotificacionService {
         message.setFrom(new InternetAddress(fromEmail));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
         message.setSubject(subject);
-        message.setText(body);
+        message.setContent(body, "text/html; charset=UTF-8");
 
         Transport.send(message);
     }
